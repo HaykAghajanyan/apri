@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const CIRCLES = [
+const Index = [
   {
     id: 1,
     color: 'red'
@@ -24,10 +24,10 @@ const CIRCLES = [
 ]
 
 const Circles = () => {
-  const [circles, setCircles] = useState(CIRCLES)
+  const [circles, setCircles] = useState(Index)
   const [activeCircleId, setActiveCircleId] = useState(null)
 
-  // const filtered = CIRCLES.filter(item => item.id > 1)
+  // const filtered = Index.filter(item => item.id > 1)
 
   const removeCircle = id => {
     setCircles(prev => prev.filter(item => item.id !== id))

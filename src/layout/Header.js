@@ -1,4 +1,7 @@
 import { useState, useEffect, memo } from 'react'
+import {Link, NavLink} from "react-router-dom";
+
+import './index.css'
 
 // state
 // props
@@ -25,8 +28,11 @@ const Header = ({ id, color: propsColor, counter }) => {
   }, [color])
 
   return (
-    <header style={{ backgroundColor: color}} onClick={() => changeColor()}>
+    <header onClick={() => changeColor()}>
       Header => {counter}
+
+      <NavLink className={({isActive}) => isActive ? 'active' : ''} to={'cats'}>To cats</NavLink>
+      <NavLink to={'/'}>Go back</NavLink>
     </header>
   )
 }

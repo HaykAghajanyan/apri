@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {PersonContext, usePersonInfo} from "./contexts/personContext";
+import {PersonContext, usePersonInfo} from "../contexts/personContext";
 
 const PersonImage = () => {
 

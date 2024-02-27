@@ -9,7 +9,16 @@ const PersonProvider = ({children}) => {
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(res => res.json())
-      .then(res => setTodos(res))
+      .then(res => {
+        fetch('http://localhost:3001', {
+          method: 'post',
+          body: JSON.stringify({todos: res})
+        })
+          .then(res => console.log('post response', res))
+          .catch(err => console.error(err))
+
+        setTodos(res)
+      })
       .catch(err => console.error(err))
   }, [])
 

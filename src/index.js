@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom'
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-import './index.css';
 import PersonProvider from "./contexts/personContext";
+import { router } from "./routes";
+
+import './assets/index.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <PersonProvider>
-    <App/>
+    <RouterProvider router={router}/>
   </PersonProvider>
 );
 

@@ -1,8 +1,9 @@
 import {useEffect, useRef, useState} from "react";
+import { Link } from 'react-router-dom'
 
-import Header from "./Header";
-import Circles from "./Circles";
-import PersonInfo from "./PersonInfo";
+import Header from "./layout/Header";
+import Circles from "./components/Circles";
+import PersonInfo from "./components/PersonInfo";
 
 // Prop drilling
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
   useEffect(() => {
     console.log('ref Inside', ref)
 
-    ref.current.focus()
+    // ref.current.focus()
   }, [])
 
   const handleAddingToCounter = () => {
@@ -69,8 +70,8 @@ const App = () => {
       {/*  }*/}
       {/*</div>*/}
 
-      <Header id={1} color={'blue'} counter={counter}/>
-      <button ref={ref} onClick={handleAddingToCounter}>click</button>
+      {/*<button ref={ref} onClick={handleAddingToCounter}>click</button>*/}
+
       <Circles/>
       <PersonInfo/>
 

@@ -8,6 +8,7 @@ import PersonProvider from "./contexts/personContext";
 import { router } from "./routes";
 
 import './assets/index.css';
+import TodosProvider from "./contexts/TodosProvider";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,7 +18,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <PersonProvider>
-    <RouterProvider router={router}/>
+    <TodosProvider>
+      <RouterProvider router={router}/>
+    </TodosProvider>
   </PersonProvider>
 );
 

@@ -31,8 +31,9 @@ const Header = ({ id, color: propsColor, counter }) => {
     <header onClick={() => changeColor()}>
       Header => {counter}
 
+      <NavLink className={({isActive}) => isActive ? 'active' : ''} to={'/'}>Go back</NavLink>
       <NavLink className={({isActive}) => isActive ? 'active' : ''} to={'cats'}>To cats</NavLink>
-      <NavLink to={'/'}>Go back</NavLink>
+      <NavLink className={({isActive}) => isActive ? 'active' : ''} to={'/todos'}>Go to Todo list</NavLink>
     </header>
   )
 }

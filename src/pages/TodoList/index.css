@@ -1,0 +1,25 @@
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem
+}
+
+.single-todo {
+    color: goldenrod;
+    padding: 15px;
+    border: 1px black solid;
+    min-width: 600px;
+    display: flex;
+    justify-content: center;
+    gap: 10px
+}
+
+.completed {
+    color: green;
+}
+
+.not-completed {
+    color: red;
+}

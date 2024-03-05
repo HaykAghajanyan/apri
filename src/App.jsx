@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, Navigate } from 'react-router-dom'
 
 import Header from "./layout/Header";
 import Circles from "./components/Circles";
@@ -7,7 +7,9 @@ import PersonInfo from "./components/PersonInfo";
 
 // Prop drilling
 const App = () => {
-  const [counter, setCounter] = useState(1)
+  const navigate = useNavigate();
+
+  const [counter, setCounter] = useState(0)
   const [todos, setTodos] = useState([])
   const [text, setText] = useState('')
   const [id, setId] = useState(null)
@@ -77,6 +79,11 @@ const App = () => {
 
       <input value={id} onChange={e => setId(e.target.value)} type="number"/>
       <input value={text} onChange={e => setText(e.target.value)} type="text"/>
+
+      {!!counter && <Navigate to={'/todos'}/>}
+
+      {/*<button onClick={() => navigate('/todos', { state: 100, replace: true })}>GO TO TODOS</button>*/}
+      <button onClick={handleAddingToCounter}>GO TO TODOS</button>
 
       <button onClick={getTodos}>GET TODOS</button>
       <button onClick={changeTodo}>CHANGE TODO</button>

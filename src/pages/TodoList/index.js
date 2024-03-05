@@ -2,9 +2,11 @@ import {useTodosProvider} from "../../contexts/TodosProvider";
 import './index.css'
 import {useCallback, useState} from "react";
 import Todo from "./Todo";
+import {useLocation} from "react-router-dom";
 
-const TodoList = () => {
-  const {todos, setTodos, postTodos, addTodo, deleteTodo, changeTodo} = useTodosProvider();
+const TodoList = ({todos, setTodos, postTodos, addTodo, deleteTodo, changeTodo}) => {
+  const location = useLocation()
+  console.log('location', location)
 
   const [title, setTitle] = useState('')
   const [isCompleted, setIsCompleted] = useState(false)
@@ -28,7 +30,6 @@ const TodoList = () => {
       return todo
     }))
   }, [])
-
 
   return (
     <div className='todo-container'>

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {Suspense} from 'react';
+import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom'
+import {RouterProvider} from 'react-router-dom'
 
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {store} from "./redux";
+import {router} from "./routes";
 import PersonProvider from "./contexts/personContext";
-import { router } from "./routes";
+import TodosProvider from "./contexts/TodosProvider";
 
 import './assets/index.css';
-import TodosProvider from "./contexts/TodosProvider";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,11 +17,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // wrap
 
 root.render(
-  <PersonProvider>
-    <TodosProvider>
-      <RouterProvider router={router}/>
-    </TodosProvider>
-  </PersonProvider>
+  <Suspense fallback={<div>...LOADING</div>}>
+    <Provider store={store}>
+      <PersonProvider>
+        <TodosProvider>
+          <RouterProvider router={router}/>
+        </TodosProvider>
+      </PersonProvider>
+    </Provider>
+  </Suspense>
 );
 
 // jsx

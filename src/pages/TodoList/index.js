@@ -1,12 +1,16 @@
 import {useTodosProvider} from "../../contexts/TodosProvider";
 import './index.css'
-import {useCallback, useState} from "react";
+import {useCallback, useMemo, useState} from "react";
 import Todo from "./Todo";
 import {useLocation} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {todoLoadingSelector, todoSelector} from "../../redux/slices/todoSlice";
 
-const TodoList = ({todos, setTodos, postTodos, addTodo, deleteTodo, changeTodo}) => {
+const TodoList = ({setTodos, postTodos, addTodo, deleteTodo, changeTodo}) => {
   const location = useLocation()
-  console.log('location', location)
+  console.log('location ', location)
+  const todos = useSelector(todoSelector)
+  const isLoading = useSelector(todoLoadingSelector)
 
   const [title, setTitle] = useState('')
   const [isCompleted, setIsCompleted] = useState(false)
@@ -31,6 +35,10 @@ const TodoList = ({todos, setTodos, postTodos, addTodo, deleteTodo, changeTodo})
     }))
   }, [])
 
+  const memoizedObj = useMemo(() => {
+    return Math.random()
+  }, [])
+
   return (
     <div className='todo-container'>
       <button type='button' onClick={(e) => postTodos(e, todos)}>Post todos to server</button>
@@ -40,16 +48,18 @@ const TodoList = ({todos, setTodos, postTodos, addTodo, deleteTodo, changeTodo})
       <button onClick={() => addTodo({title, isCompleted})}>Add todo</button>
 
       {
-        todos.map(({id, title, completed}) => (
-          <Todo
-            key={id}
-            id={id}
-            title={title}
-            completed={completed}
-            deleteTodoHandler={deleteTodoHandler}
-            changeTodoHandler={changeTodoHandler}
-          />
-        ))
+        isLoading
+          ? <div>Loading</div>
+          : todos.map(({id, title, completed}) => (
+            <Todo
+              key={id}
+              id={id}
+              title={title}
+              completed={completed}
+              deleteTodoHandler={deleteTodoHandler}
+              changeTodoHandler={changeTodoHandler}
+            />
+          ))
       }
     </div>
   )

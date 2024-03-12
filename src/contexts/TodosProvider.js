@@ -51,7 +51,7 @@ const TodosProvider = ({children}) => {
   }
 
   useEffect(() => {
-    fetch('http://localhost:3001/todos')
+    fetch('https://jsonplaceholder.typicode.com/todos')
       .then(res => res.json())
       .then(res => setTodos(res))
       .catch(err => console.error(err))

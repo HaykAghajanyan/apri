@@ -28,11 +28,12 @@ const Header = ({ id, color: propsColor, counter }) => {
   }, [color])
 
   return (
-    <header onClick={() => changeColor()}>
+    <header style={{display: 'flex', gap: '10px'}} onClick={() => changeColor()}>
       Header => {counter}
 
       <NavLink className={({isActive}) => isActive ? 'active' : ''} to={'/'}>Go back</NavLink>
-      <NavLink className={({isActive}) => isActive ? 'active' : ''} to={'cats'}>To cats</NavLink>
+      <NavLink className={({isActive}) => isActive ? 'active' : ''} to={'/cats'}>To cats</NavLink>
+      <NavLink replace className={({isActive}) => isActive ? 'active' : ''} to={'/userInfo'}>User Info</NavLink>
       <NavLink className={({isActive}) => isActive ? 'active' : ''} to={'/todos'}>Go to Todo list</NavLink>
     </header>
   )

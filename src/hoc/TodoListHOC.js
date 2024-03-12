@@ -1,15 +1,19 @@
 import {useTodosProvider} from "../contexts/TodosProvider";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
-const TodoListHOC = ({ children }) => {
-  const {todos, setTodos, postTodos, addTodo, deleteTodo, changeTodo} = useTodosProvider();
+import {TodoThunk} from "../redux/thunks/todoThunk";
+import {todoSelector} from "../redux/slices/todoSlice";
 
-  return <div>
-    {
-      !!todos.length
-      ? <div>{children}</div>
-      : <div>Loading</div>
-    }
-  </div>
+
+const TodoListHOC = ({children}) => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(TodoThunk())
+  }, [dispatch])
+
+  return <div>{children}</div>
 }
 
 export default TodoListHOC

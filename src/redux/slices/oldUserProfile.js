@@ -37,10 +37,10 @@ const createThunk = ({ dispatch, getState }) => next => action => {
 }
 
 
-const userInfoThunk = (dispatch, getState) => {
-  const userProfile = getUserProfile()
+const userInfoThunk = async (dispatch, getState) => {
+  const userProfile = await getUserProfile()
 
-  dispatch(userProfile)
+  dispatch(setUserName(userProfile))
 }
 
 
